@@ -2,18 +2,24 @@
 // Chapter 2, project 11
 
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
 int main() {
-  double tempC, tempF;
-  for (tempC = 100; ; tempC--) {
-    tempF = 1.8 * tempC + 32;
-    cout << tempC << "C = " << tempF << "F";
+  string firstName, lastName;
+  int heightFeet, heightInches, idealWeight;
+  fstream inputStream;
+  inputStream.open("proj2_11.txt");
+  while (inputStream >> firstName >> lastName) { // evaluates to "false" if no
+                                                 // more entries are present
+    inputStream >> heightFeet;
+    inputStream >> heightInches;
+    idealWeight = 110 + ((heightFeet - 5) * 12 + heightInches) * 5;
+    cout << "Ideal weight for " << firstName << " " << lastName << " is ";
+    cout << idealWeight << "lb";
     cout << endl;
-    if (tempF == tempC)
-      break;
   }
-  cout << "The closest they get is " << tempC << "C and " << tempF << "F";
   cout << endl;
 }
